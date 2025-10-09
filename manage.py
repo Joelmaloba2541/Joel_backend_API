@@ -7,6 +7,14 @@ import sys
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Joel_backend_API.settings')
+    import django
+    django.setup()
+    if len(sys.argv) > 1 and sys.argv[1] == 'runserver':
+        from django.core.management import call_command
+        call_command('migrate')
+        from django.contrib.auth.models import User
+        if not User.objects.filter(username='admin').exists():
+            User.objects.create_superuser('admin', 'admin@gmail.com', 'admin')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

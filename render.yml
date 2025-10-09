@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: joel-backend-api
+    env: python
+    buildCommand: "./manage.py migrate && ./manage.py collectstatic --noinput"
+    startCommand: "gunicorn Joel_backend_API.wsgi:application"

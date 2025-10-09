@@ -1,2 +1,2 @@
-release: python manage.py setup_superuser
+release: ./release.sh
 web: gunicorn Joel_backend_API.wsgi:application
